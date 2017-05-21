@@ -1,0 +1,14 @@
+{
+    "name": "guidocella/lang-file-manager",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1",
+        "laravel/framework": "5.4.*|5.5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "GuidoCella\\": "src"
+        }
+    }
+}
