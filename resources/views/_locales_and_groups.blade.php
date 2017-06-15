@@ -1,4 +1,4 @@
-<form class="form-inline">
+<form class="form-inline mb-3">
     <select class="form-control"
             onchange="location.href = {{ (isset($currentGroup) ? "'/admin/lang/' + this.value + '/$currentGroup'" : 'this.value') }}">
         @foreach (config('lang_file_manager.locales') as $locale => $language)
@@ -8,21 +8,23 @@
 </form>
 
 @isset($currentGroup)
-    <p>
-        <em>
+    <p class="row mb-3">
+        <em class="col-lg-10">
             Non tradurre le parole precedute da due punti (es. :città).
             Queste parole saranno rimpiazzate automaticamente dal valore opportuno.
         </em>
 
-        <button class="btn btn-secondary float-right" form="lang-form">Salva</button>
+        <span class="col-lg-2">
+            <button class="btn btn-secondary" form="lang-form">Salva</button>
+        </span>
     </p>
 @endisset
 
-<nav class="nav nav-tabs mt-3">
+<nav class="nav nav-tabs flex-wrap">
     @foreach ($groups as $group)
         <a href="/admin/lang/{{ "$currentLocale/$group" }}"
            class="nav-link{!! isset($currentGroup) && $group === $currentGroup ? ' active' : '' !!}">
-            {{ ucfirst(str_replace('_', ' ', $group)) }}
+            {{ str_replace('_', ' ', ucfirst($group)) }}
         </a>
     @endforeach
 </nav>
