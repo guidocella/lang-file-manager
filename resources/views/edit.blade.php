@@ -17,7 +17,7 @@
             @endunless
 
             @foreach (trans($currentGroup) as $key => $line)
-                <tr>
+                <tr title="{{ $key }}">
                     @unless (App::isLocale($currentLocale))
                         <td>@lang("$currentGroup.$key")</td>
                     @endunless
