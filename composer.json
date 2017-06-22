@@ -1,5 +1,6 @@
 {
     "name": "guidocella/lang-file-manager",
+    "description": "Manager for array Laravel lang files and Bootstrap 4",
     "type": "library",
     "license": "MIT",
     "require": {
@@ -9,6 +10,13 @@
     "autoload": {
         "psr-4": {
             "GuidoCella\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GuidoCella\\LangFileManagerServiceProvider"
+            ]
         }
     }
 }
