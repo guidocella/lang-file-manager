@@ -19,12 +19,12 @@
             @foreach (trans($currentGroup) as $key => $line)
                 <tr title="{{ $key }}">
                     @unless (App::isLocale($currentLocale))
-                        <td>@lang("$currentGroup.$key")</td>
+                        <td>{!! str_contains($line, '<p>') ? $line : nl2br($line) !!}</td>
                     @endunless
 
                     <td>
                         {{-- We'll add the data-editor attribute to the textareas of translations
-                             that contain the <p> tag, so it can be used to turn them into WYSIWYG editors. --}}
+                             that contain the <p> tag so it can be used to turn them into WYSIWYG editors. --}}
                         <textarea name="{{ $key }}"
                                   class="form-control"{{ str_contains($line, '<p>') ? ' data-editor' : '' }}
                         >@lang("$currentGroup.$key", [], $currentLocale)</textarea>
