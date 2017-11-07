@@ -26,7 +26,7 @@
                         {{-- We'll add the data-editor attribute to the textareas of translations
                              that contain the <p> tag so it can be used to turn them into WYSIWYG editors. --}}
                         <textarea name="{{ $key }}"
-                                  class="form-control"{{ str_contains($line, '<p>') ? ' data-editor' : '' }}
+                                  class="form-control"{{ str_contains($line, '<p') ? ' data-editor' : '' }}
                         >@lang("$currentGroup.$key", [], $currentLocale)</textarea>
                     </td>
                 </tr>
