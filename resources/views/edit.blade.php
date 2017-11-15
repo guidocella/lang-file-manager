@@ -23,6 +23,8 @@
                     @endunless
 
                     <td>
+                        {{ config("lang_file_manager.placeholders.$currentGroup.$key") }}
+
                         {{-- We'll add the data-editor attribute to the textareas of translations
                              that contain the <p> tag so it can be used to turn them into WYSIWYG editors. --}}
                         <textarea name="{{ $key }}"

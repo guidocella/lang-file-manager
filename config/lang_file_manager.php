@@ -29,4 +29,20 @@ return [
     */
 
     'middleware' => [],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Placeholders
+    |--------------------------------------------------------------------------
+    |
+    | The list of placeholders to show above each field.
+    |
+    */
+
+    'placeholders' => [
+        'auth' => [
+            'throttle' => ':seconds'
+        ],
+    ],
+
 ];
