@@ -35,7 +35,13 @@ class LangFileManagerController extends Controller
      */
     public function update(Request $request, string $locale, string $group): RedirectResponse
     {
-        File::putArray(App::langPath() . "/$locale/$group", $request->except('_token', '_method'));
+        File::putArray(
+            App::langPath() . "/$locale/$group",
+            array_map(function ($input) {
+                return $input === null ? '' : $input;
+                // If we save blank lines as null instead of '' the default locale's line will be shown.
+            }, $request->except('_token', '_method'))
+        );
 
         opcache_invalidate(App::langPath() . "/$locale/$group.php");
 
