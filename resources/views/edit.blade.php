@@ -19,7 +19,7 @@
             @foreach (trans($currentGroup) as $key => $line)
                 <tr title="{{ $key }}">
                     @unless (App::isLocale($currentLocale))
-                        <td>{!! str_contains($line, '<p>') ? $line : nl2br($line) !!}</td>
+                        <td>{!! str_contains($line, '<p') ? $line : nl2br($line) !!}</td>
                     @endunless
 
                     <td>
