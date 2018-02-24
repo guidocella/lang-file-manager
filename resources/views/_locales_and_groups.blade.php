@@ -14,9 +14,9 @@
             Queste parole saranno rimpiazzate automaticamente dal valore opportuno.
         </em>
 
-        <span class="col-lg-2">
+        <div class="col-lg-2">
             <button class="btn btn-secondary" form="lang-form">Salva</button>
-        </span>
+        </div>
     </p>
 @endisset
 
