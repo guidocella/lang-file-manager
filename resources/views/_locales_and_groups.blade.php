@@ -8,7 +8,7 @@
 </form>
 
 @isset($currentGroup)
-    <p class="row mb-3">
+    <p class="row">
         <em class="col-lg-10">
             Non tradurre le parole precedute da due punti (es. :città).
             Queste parole saranno rimpiazzate automaticamente dal valore opportuno.
