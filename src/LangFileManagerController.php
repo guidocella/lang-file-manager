@@ -27,7 +27,7 @@ class LangFileManagerController extends Controller
     {
         $groups = $this->getGroups();
 
-        validator()->validate(['group' => $currentGroup], ['group' => Rule::in($groups)]);
+        validator(['group' => $currentGroup], ['group' => Rule::in($groups)])->validate();
 
         return view('lang-file-manager::edit', compact('currentLocale', 'currentGroup', 'groups'));
     }
