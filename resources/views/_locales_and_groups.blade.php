@@ -14,7 +14,7 @@
             Queste parole saranno rimpiazzate automaticamente dal valore opportuno.
         </em>
 
-        <div class="col-lg-2">
+        <div class="col-lg">
             <button class="btn btn-outline-primary" form="lang-form">Salva</button>
         </div>
     </p>
