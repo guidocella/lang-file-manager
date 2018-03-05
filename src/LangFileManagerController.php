@@ -6,9 +6,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rule;
 
 class LangFileManagerController extends Controller
 {
@@ -26,6 +26,8 @@ class LangFileManagerController extends Controller
     public function edit(string $currentLocale, string $currentGroup): View
     {
         $groups = $this->getGroups();
+
+        validator()->validate(['group' => $currentGroup], ['group' => Rule::in($groups)]);
 
         return view('lang-file-manager::edit', compact('currentLocale', 'currentGroup', 'groups'));
     }
@@ -51,12 +53,13 @@ class LangFileManagerController extends Controller
     /**
      * Get the text groups.
      */
-    protected function getGroups(): Collection
+    protected function getGroups(): array
     {
         return collect(scandir(App::langPath() . '/' . App::getLocale()))
             ->diff(['.', '..', 'validation.php'])
             ->map(function ($filename) {
                 return str_replace('.php', '', $filename);
-            });
+            })
+            ->all();
     }
 }
