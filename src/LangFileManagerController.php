@@ -42,7 +42,7 @@ class LangFileManagerController extends Controller
             array_map(function ($input) {
                 return $input === null ? '' : $input;
                 // If we save blank lines as null instead of '' the default locale's line will be shown.
-            }, $request->except('_token', '_method'))
+            }, $request->except('_token'))
         );
 
         opcache_invalidate(App::langPath() . "/$locale/$group.php");
