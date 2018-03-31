@@ -47,7 +47,7 @@ class LangFileManagerController extends Controller
 
         opcache_invalidate(App::langPath() . "/$locale/$group.php");
 
-        return back();
+        return back()->with('success', 'Testi aggiornati.');
     }
 
     /**
