@@ -15,7 +15,7 @@
         </em>
 
         <div class="col-lg">
-            <button class="btn btn-outline-primary" form="lang-form">Salva</button>
+            <button class="btn btn-primary" form="lang-form">Salva</button>
         </div>
     </p>
 @endisset

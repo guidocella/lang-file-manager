@@ -35,6 +35,6 @@
             @endforeach
         </table>
 
-        <button class="btn btn-outline-primary d-block mx-auto">Salva</button>
+        <button class="btn btn-primary d-block mx-auto">Salva</button>
     </form>
 @endsection
