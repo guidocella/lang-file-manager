@@ -57,11 +57,14 @@ class LangFileManagerController extends Controller
      */
     protected function getGroups(): array
     {
-        return collect(scandir(App::langPath() . '/' . App::getLocale()))
-            ->diff(['.', '..', 'validation.php'])
-            ->map(function ($filename) {
-                return str_replace('.php', '', $filename);
+        return collect(File::files(App::langPath() . '/' . App::getLocale()))
+            ->reject(function ($file) {
+                return $file->isLink();
             })
+            ->map(function ($filename) {
+                return $filename->getBasename('.php');
+            })
+            ->diff('validation')
             ->all();
     }
 }
