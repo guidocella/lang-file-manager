@@ -6,9 +6,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
-use Illuminate\Validation\Rule;
 
 class LangFileManagerController extends Controller
 {
@@ -57,7 +55,7 @@ class LangFileManagerController extends Controller
      */
     protected function getGroups(): array
     {
-        return collect(File::files(app('path.lang') . '/' . App::getLocale()))
+        return collect(File::files(app('path.lang') . '/' . app()->getLocale()))
             ->reject->isLink()
             ->map->getBasename('.php')
                  ->diff('validation')
