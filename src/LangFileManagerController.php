@@ -13,9 +13,9 @@ class LangFileManagerController extends Controller
     /**
      * List the text groups.
      */
-    public function index(string $currentLocale): View
+    public function index(): View
     {
-        return view('lang-file-manager::index', ['currentLocale' => $currentLocale, 'groups' => $this->getGroups()]);
+        return view('lang-file-manager::index', ['currentLocale' => app()->getLocale(), 'groups' => $this->getGroups()]);
     }
 
     /**

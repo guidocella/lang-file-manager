@@ -1,12 +1,3 @@
-<form class="form-inline mb-3">
-    <select class="form-control"
-            onchange="location.href = {{ (isset($currentGroup) ? "'/admin/lang/' + this.value + '/$currentGroup'" : 'this.value') }}">
-        @foreach (config('lang_file_manager.locales') as $locale => $language)
-            <option value="{{ $locale }}"{{ $locale === $currentLocale ? ' selected' : '' }}>{{ $language }}</option>
-        @endforeach
-    </select>
-</form>
-
 @isset($currentGroup)
     <p class="row">
         <em class="col-lg-10">

@@ -1,7 +1,15 @@
 @extends('layouts.admin', ['title' => ucfirst(str_replace('_', ' ', $currentGroup))])
 
 @section('content')
-    @include('lang-file-manager::_locales_and_groups')
+    <form class="form-inline mb-3">
+        <select class="form-control" onchange="location.href = '/admin/lang/' + this.value + '/{{ $currentGroup }}'">
+            @foreach (config('lang_file_manager.locales') as $locale => $language)
+                <option value="{{ $locale }}"{{ $locale === $currentLocale ? ' selected' : '' }}>{{ $language }}</option>
+            @endforeach
+        </select>
+    </form>
+
+    @include('lang-file-manager::_groups')
 
     <form id="lang-form" method="post">
         {{ csrf_field() }}
