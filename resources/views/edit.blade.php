@@ -9,6 +9,17 @@
         </select>
     </form>
 
+    <div class="form-group row align-items-center">
+        <em class="col-md-10">
+            Non tradurre le parole precedute da due punti (es. :città).
+            Queste parole saranno rimpiazzate automaticamente dal valore opportuno.
+        </em>
+
+        <div class="col-md text-md-right">
+            <button class="btn btn-primary" form="lang-form">Salva</button>
+        </div>
+    </div>
+
     @include('lang-file-manager::_groups')
 
     <form id="lang-form" method="post">
