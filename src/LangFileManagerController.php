@@ -25,9 +25,7 @@ class LangFileManagerController extends Controller
     {
         $groups = $this->getGroups();
 
-        if (!in_array($currentGroup, $groups)) {
-            abort(404);
-        }
+        abort_if(!in_array($currentGroup, $groups), 404);
 
         return view('lang-file-manager::edit', compact('currentLocale', 'currentGroup', 'groups'));
     }
