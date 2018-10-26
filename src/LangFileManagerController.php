@@ -56,7 +56,7 @@ class LangFileManagerController extends Controller
         return collect(File::files(app('path.lang') . '/' . app()->getLocale()))
             ->reject->isLink()
             ->map->getBasename('.php')
-                 ->diff('validation')
+                 ->diff(['auth', 'pagination', 'passwords', 'validation'])
                  ->all();
     }
 }
