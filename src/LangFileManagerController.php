@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class LangFileManagerController extends Controller
 {
@@ -44,6 +45,11 @@ class LangFileManagerController extends Controller
         );
 
         opcache_invalidate(app('path.lang') . "/$locale/$group.php");
+
+        // Notifies me to download the updated texts in my development environment.
+        if (app()->environment('production')) {
+            Log::notice("Language file $locale/$group was updated.");
+        }
 
         return back()->with('success', 'Testi aggiornati.');
     }
