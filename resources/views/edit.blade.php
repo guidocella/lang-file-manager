@@ -1,13 +1,15 @@
 @extends('layouts.admin', ['title' => ucfirst(str_replace('_', ' ', $currentGroup))])
 
 @section('content')
-    <form class="form-inline mb-3">
-        <select class="form-control" onchange="location.href = '/admin/lang/' + this.value + '/{{ $currentGroup }}'">
-            @foreach (config('lang_file_manager.locales') as $locale => $language)
-                <option value="{{ $locale }}"{{ $locale === $currentLocale ? ' selected' : '' }}>{{ $language }}</option>
-            @endforeach
-        </select>
-    </form>
+    @if (count(config('lang_file_manager.locales')) > 1)
+        <form class="form-inline mb-3">
+            <select class="form-control" onchange="location.href = '/admin/lang/' + this.value + '/{{ $currentGroup }}'">
+                @foreach (config('lang_file_manager.locales') as $locale => $language)
+                    <option value="{{ $locale }}"{{ $locale === $currentLocale ? ' selected' : '' }}>{{ $language }}</option>
+                @endforeach
+            </select>
+        </form>
+    @endif
 
     <div class="form-group row align-items-center">
         <em class="col-md-10">
