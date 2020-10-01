@@ -7,7 +7,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
 
 class LangFileManagerController extends Controller
 {
@@ -37,19 +36,14 @@ class LangFileManagerController extends Controller
     public function update(Request $request, string $locale, string $group): RedirectResponse
     {
         File::putArray(
-            app('path.lang') . "/$locale/$group",
+            app('path.lang')."/$locale/$group",
             array_map(function ($input) {
                 return $input === null ? '' : $input;
-                // If we save blank lines as null instead of '' the default locale's line will be shown.
+            // If we save blank lines as null instead of '' the default locale's line will be shown.
             }, $request->except('_token'))
         );
 
-        opcache_invalidate(app('path.lang') . "/$locale/$group.php");
-
-        // Notifies me to download the updated texts in my development environment.
-        if (app()->environment('production')) {
-            Log::notice("Language file $locale/$group was updated.");
-        }
+        opcache_invalidate(app('path.lang')."/$locale/$group.php");
 
         return back()->with('success', 'Testi aggiornati.');
     }
@@ -59,10 +53,11 @@ class LangFileManagerController extends Controller
      */
     protected function getGroups(): array
     {
-        return collect(File::files(app('path.lang') . '/' . app()->getLocale()))
+        return collect(File::files(app('path.lang').'/'.app()->getLocale()))
             ->reject->isLink()
             ->map->getBasename('.php')
-                 ->diff(['auth', 'pagination', 'passwords', 'validation'])
-                 ->all();
+            ->diff(['auth', 'pagination', 'passwords', 'validation'])
+            ->all()
+        ;
     }
 }
