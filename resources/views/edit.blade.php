@@ -40,17 +40,14 @@
             @foreach (trans($currentGroup) as $key => $line)
                 <tr title="{{ $key }}">
                     @unless (App::isLocale($currentLocale))
-                        <td>{!! Illuminate\Support\Str::contains($line, '<p') ? $line : nl2br($line) !!}</td>
+                        <td>{!! str_starts_with($line, '<') ? $line : nl2br($line) !!}</td>
                     @endunless
 
                     <td>
                         {{ config("lang_file_manager.placeholders.$currentGroup.$key") }}
 
-                        {{-- We'll add the data-editor attribute to the textareas of translations
-                             that contain the <p> tag so it can be used to turn them into WYSIWYG editors. --}}
-                        <textarea name="{{ $key }}"
-                                  class="form-control"{{ Illuminate\Support\Str::contains($line, '<p') ? ' data-editor' : '' }}
-                        >@lang("$currentGroup.$key", [], $currentLocale)</textarea>
+                        {{-- data-editor is used to add a WYSIWYG editor --}}
+                        <textarea name="{{ $key }}" class="form-control"@if(str_starts_with($line, '<')) data-editor @endif>@lang("$currentGroup.$key", [], $currentLocale)</textarea>
                     </td>
                 </tr>
             @endforeach
