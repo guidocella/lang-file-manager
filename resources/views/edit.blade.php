@@ -47,7 +47,7 @@
                         {{ config("lang_file_manager.placeholders.$currentGroup.$key") }}
 
                         {{-- data-editor is used to add a WYSIWYG editor --}}
-                        <textarea name="{{ $key }}" class="form-control"@if(str_starts_with($line, '<')) data-editor @endif>@lang("$currentGroup.$key", [], $currentLocale)</textarea>
+                        <textarea name="{{ $key }}" class="form-control"@if(str_starts_with($line, '<') && !str_starts_with($line, '<strong')) data-editor @endif>@lang("$currentGroup.$key", [], $currentLocale)</textarea>
                     </td>
                 </tr>
             @endforeach
