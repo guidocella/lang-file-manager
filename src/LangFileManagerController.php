@@ -37,10 +37,8 @@ class LangFileManagerController extends Controller
     {
         File::putArray(
             app('path.lang')."/$locale/$group",
-            array_map(function ($input) {
-                return $input === null ? '' : $input;
+            array_map(fn ($input) => $input === null ? '' : $input, $request->except('_token'))
             // If we save blank lines as null instead of '' the default locale's line will be shown.
-            }, $request->except('_token'))
         );
 
         opcache_invalidate(app('path.lang')."/$locale/$group.php");
