@@ -31,7 +31,7 @@
             @unless (App::isLocale($currentLocale))
                 <thead>
                 <tr>
-                    <th>{{ config('lang_file_manager.locales')[App::getLocale()] }}</th>
+                    <th>Italiano</th>
                     <th>{{ config('lang_file_manager.locales')[$currentLocale] }}</th>
                 </tr>
                 </thead>
