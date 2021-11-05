@@ -8,6 +8,6 @@ Route::middleware(array_merge(['web', 'auth'], config('lang_file_manager.middlew
     ->group(function () {
         Route::get('', [LangFileManagerController::class, 'index']);
         Route::get('{locale}/{group}', [LangFileManagerController::class, 'edit']);
-        Route::post('{locale}/{group}', [LangFileManagerController::class, 'edit']);
+        Route::post('{locale}/{group}', [LangFileManagerController::class, 'update']);
     })
 ;
