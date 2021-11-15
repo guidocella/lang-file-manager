@@ -28,7 +28,7 @@
         {{ csrf_field() }}
 
         <table class="table table-striped" style="table-layout: fixed">
-            @unless (App::isLocale($currentLocale))
+            @unless (App::isLocale('it'))
                 <thead>
                 <tr>
                     <th>Italiano</th>
