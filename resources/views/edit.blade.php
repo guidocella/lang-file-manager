@@ -25,8 +25,6 @@
     @include('lang-file-manager::_groups')
 
     <form id="lang-form" method="post">
-        {{ csrf_field() }}
-
         <table class="table table-striped" style="table-layout: fixed">
             @unless (App::isLocale($currentLocale))
                 <thead>
