@@ -5,7 +5,7 @@
         <form class="form-inline mb-3">
             <select class="form-control" onchange="location.href = '/admin/lang/' + this.value + '/{{ $currentGroup }}'">
                 @foreach (config('lang_file_manager.locales') as $locale => $language)
-                    <option value="{{ $locale }}"{{ $locale === $currentLocale ? ' selected' : '' }}>{{ $language }}</option>
+                    <option value="{{ $locale }}" @selected($locale === $currentLocale)>{{ $language }}</option>
                 @endforeach
             </select>
         </form>
