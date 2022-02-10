@@ -36,12 +36,12 @@ class LangFileManagerController extends Controller
     public function update(Request $request, string $locale, string $group): RedirectResponse
     {
         File::putArray(
-            app('path.lang')."/$locale/$group",
+            lang_path("$locale/$group"),
             array_map(fn ($input) => $input === null ? '' : $input, $request->input())
             // If we save blank lines as null instead of '' the default locale's line will be shown.
         );
 
-        opcache_invalidate(app('path.lang')."/$locale/$group.php");
+        opcache_invalidate(lang_path("$locale/$group.php"));
 
         return back()->with('success', 'Testi aggiornati.');
     }
@@ -51,7 +51,7 @@ class LangFileManagerController extends Controller
      */
     protected function getGroups(): array
     {
-        return collect(File::files(app('path.lang').'/'.app()->getLocale()))
+        return collect(File::files(lang_path(app()->getLocale())))
             ->reject->isLink()
             ->map->getBasename('.php')
             ->diff(['auth', 'pagination', 'passwords', 'validation'])
