@@ -41,7 +41,9 @@ class LangFileManagerController extends Controller
             // If we save blank lines as null instead of '' the default locale's line will be shown.
         );
 
-        opcache_invalidate(lang_path("$locale/$group.php"));
+        if (function_exists('opcache_invalidate')) {
+            opcache_invalidate(lang_path("$locale/$group.php"));
+        }
 
         return back()->with('success', 'Testi aggiornati.');
     }
