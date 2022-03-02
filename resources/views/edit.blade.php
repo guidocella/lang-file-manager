@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['title' => ucfirst(str_replace('_', ' ', $currentGroup))])
+@extends('layouts.admin', ['title' => ucfirst(strtr($currentGroup, '_', ' '))])
 
 @section('content')
     @if (count(config('lang_file_manager.locales')) > 1)
