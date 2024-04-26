@@ -17,7 +17,16 @@ class LangFileManagerServiceProvider extends ServiceProvider
 
         // Store an array in a config or lang file.
         File::macro('putArray', function (string $path, array $data) {
-            return $this->put("$path.php", "<?php\n\nreturn ".var_export($data, true).";\n");
+            $patterns = [
+                '/array \(/' => '[',
+                '/^( *)\)(,?)$/m' => '$1]$2',
+                '/=> ?\n +\[/' => '=> [',
+                '/^( +)/m' => '$1$1',
+            ];
+
+            $data = preg_replace(array_keys($patterns), array_values($patterns), var_export($data, true));
+
+            return $this->put("$path.php", "<?php\n\nreturn $data;\n");
         });
     }
 
